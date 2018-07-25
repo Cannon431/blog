@@ -6,6 +6,8 @@ use Illuminate\Database\Eloquent\Model;
 
 class Post extends Model
 {
+    protected $fillable = ['title', 'description', 'image', 'text', 'category_id', 'author_id'];
+
     public static function getPosts($limit)
     {
         return Post::orderBy('id', 'desc')
@@ -51,6 +53,18 @@ class Post extends Model
     public static function increaseViews($post, $views = 1)
     {
         return $post->increment('views', $views);
+    }
+
+    public static function getToSelect()
+    {
+        $posts = Post::all();
+        $postsData = [];
+
+        foreach ($posts as $post) {
+            $postsData[$post->id] = $post->title;
+        }
+
+        return $postsData;
     }
 
     public function getCreatedAtAttribute($value)

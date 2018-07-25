@@ -9,6 +9,9 @@
                 </a>
                 <div class="p-content">
                     <a href="{{ url('post/' . $post->id) }}" class="text-uppercase">{{ $post->title }}</a>
+                @auth
+                        <a href="{{ url('admin/posts/' . $post->id . '/edit/') }}"><b>Изменить</b></a>
+                @endauth
                     <span class="p-date">{{ $post->created_at }}</span>
                 </div>
             </div>
@@ -27,6 +30,9 @@
                     </div>
                     <div class="p-content">
                         <a href="{{ url('post/' . $post->id) }}" class="text-uppercase">{{ $post->title }}</a>
+                        @auth
+                            <a href="{{ url('admin/posts/' . $post->id . '/edit/') }}"><b>Изменить</b></a>
+                        @endauth
                         <span class="p-date">{{ $post->created_at }}</span>
                     </div>
                 </div>

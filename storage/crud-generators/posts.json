@@ -1,0 +1,24 @@
+{
+  "fields": [
+    {
+      "name": "title",
+      "type": "string"
+    },
+    {
+      "name": "description",
+      "type": "string"
+    },
+    {
+      "name": "text",
+      "type": "text"
+    },
+    {
+      "name": "image",
+      "type": "file"
+    },
+    {
+      "name": "created_at",
+      "type": "string"
+    }
+  ]
+}

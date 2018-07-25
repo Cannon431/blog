@@ -16,9 +16,51 @@ class CommentSeeder extends Seeder
         $comments = [
             [
                 'post_id' => 1,
-                'author' => 'Олег из Anonymous',
-                'email' => 'pokazanov14@gmail.com',
+                'author' => 'Justify',
+                'email' => 'justifydev@gmail.com',
                 'text' => 'Круто, теперь заживем))'
+            ],
+            [
+                'post_id' => 1,
+                'author' => 'Justify',
+                'email' => 'justifydev@gmail.com',
+                'text' => 'Ура!'
+            ],
+            [
+                'post_id' => 1,
+                'author' => 'Justify',
+                'email' => 'justifydev@gmail.com',
+                'text' => 'Наконец-то'
+            ],
+            [
+                'post_id' => 1,
+                'author' => 'Justify',
+                'email' => 'justifydev@gmail.com',
+                'text' => 'Круто ;)'
+            ],
+            [
+                'post_id' => 1,
+                'author' => 'Justify',
+                'email' => 'justifydev@gmail.com',
+                'text' => 'О да'
+            ],
+            [
+                'post_id' => 1,
+                'author' => 'Justify',
+                'email' => 'justifydev@gmail.com',
+                'text' => 'Теперь заживем))'
+            ],
+            [
+                'post_id' => 3,
+                'author' => 'Justify',
+                'email' => 'justifydev@gmail.com',
+                'text' => 'Всем привет))'
+            ],
+            [
+                'post_id' => 4,
+                'author' => 'Justify',
+                'email' => 'justifydev@gmail.com',
+                'text' => 'Приветы'
             ]
         ];
 

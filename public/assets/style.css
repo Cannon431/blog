@@ -1184,10 +1184,12 @@ blog css
 
 .bottom-comment {
     background: #fff;
-    padding: 20px;
-    margin: 50px 0;
+    padding: 10px;
+    margin: 10px 0;
     color: #212121;
     overflow: hidden;
+    max-height: inherit;
+    min-height: 120px !important;
 }
 
 .bottom-comment .comment-text {

@@ -18,7 +18,7 @@ class CreatePostsTable extends Migration
             $table->integer('category_id')->unsigned()->default(0);
             $table->integer('author_id')->unsigned();
             $table->integer('views')->unsigned();
-            $table->string('description');
+            $table->text('description');
             $table->string('title');
             $table->string('image');
             $table->text('text');

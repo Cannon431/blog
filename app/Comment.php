@@ -7,6 +7,10 @@ use Cookie;
 
 class Comment extends Model
 {
+    const PER_PAGE = 5;
+
+    protected $fillable = ['author', 'email', 'text', 'post_id'];
+
     public static function setCookieValues($name, $email)
     {
         Cookie::forever('name', $name);
@@ -32,5 +36,10 @@ class Comment extends Model
         $email = $this->attributes['email'];
 
         return "https://www.gravatar.com/avatar/" . md5(strtolower(trim($email)));
+    }
+
+    public function post()
+    {
+        return $this->belongsTo('App\\Post');
     }
 }

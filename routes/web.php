@@ -17,10 +17,33 @@ Route::get('post/{id}', 'PostController@post')
 Route::get('category/{id}', 'PostController@category')
     ->where('id', '\d+');
 
-Route::post('comment/add/{id}', 'CommentController@add')
+Route::get('comment/add/{id}', 'CommentController@add')
     ->where('id', '\d+');
 
+Route::group(['middleware' => ['web']], function () {
+    Route::get('login', ['as' => 'login', 'uses' => 'Auth\LoginController@showLoginForm']);
+    Route::post('login', ['as' => 'login.post', 'uses' => 'Auth\LoginController@login']);
+    Route::post('logout', ['as' => 'logout', 'uses' => 'Auth\LoginController@logout']);
 
-Route::group(['prefix' => 'admin'], function () {
-    Voyager::routes();
+    Route::get('password/reset', ['as' => 'password.reset', 'uses' => 'Auth\ForgotPasswordController@showLinkRequestForm']);
+    Route::post('password/email', ['as' => 'password.email', 'uses' => 'Auth\ForgotPasswordController@sendResetLinkEmail']);
+    Route::get('password/reset/{token}', ['as' => 'password.reset.token', 'uses' => 'Auth\ResetPasswordController@showResetForm']);
+    Route::post('password/reset', ['as' => 'password.reset.post', 'uses' => 'Auth\ResetPasswordController@reset']);
 });
+
+Route::get('/home', 'HomeController@index')->name('home');
+
+Route::middleware('auth')->group(function () {
+    Route::get('admin', function () {
+        return view('admin.dashboard');
+    });
+    Route::resource('admin/comments', 'Admin\\CommentsController');
+    Route::resource('admin/posts', 'Admin\\PostsController');
+    Route::resource('admin/categories', 'Admin\\CategoriesController');
+    Route::resource('admin/authors', 'Admin\\AuthorsController');
+    Route::resource('admin/users', 'Admin\\UsersController');
+});
+
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');

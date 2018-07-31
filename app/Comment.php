@@ -3,19 +3,12 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
-use Cookie;
 
 class Comment extends Model
 {
     const PER_PAGE = 5;
 
     protected $fillable = ['author', 'email', 'text', 'post_id'];
-
-    public static function setCookieValues($name, $email)
-    {
-        Cookie::forever('name', $name);
-        Cookie::forever('email', $email);
-    }
 
     public function getCreatedAtAttribute($value)
     {

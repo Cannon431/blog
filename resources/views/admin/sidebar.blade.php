@@ -7,11 +7,11 @@
         <div class="card-body">
             <ul class="nav" role="tablist">
                 <li role="presentation"><a href="{{ url('/admin') }}">Админ панель</a></li>
-                <li role="presentation"><a href="{{ url('/admin/posts') }}">Посты</a></li>
-                <li role="presentation"><a href="{{ url('/admin/comments') }}">Комментарии</a></li>
-                <li role="presentation"><a href="{{ url('/admin/categories') }}">Категории</a></li>
-                <li role="presentation"><a href="{{ url('/admin/authors') }}">Авторы</a></li>
-                <li role="presentation"><a href="{{ url('/admin/users') }}">Пользователи</a></li>
+                <li role="presentation"><a href="{{ url('/admin/posts') }}">Посты ({{ $postsQuantity }})</a></li>
+                <li role="presentation"><a href="{{ url('/admin/comments') }}">Комментарии ({{ $commentsQuantity }})</a></li>
+                <li role="presentation"><a href="{{ url('/admin/categories') }}">Категории ({{ $categoriesQuantity }})</a></li>
+                <li role="presentation"><a href="{{ url('/admin/authors') }}">Авторы ({{ $authorsQuantity }})</a></li>
+                <li role="presentation"><a href="{{ url('/admin/users') }}">Пользователи ({{ $usersQuantity }})</a></li>
             </ul>
         </div>
     </div>

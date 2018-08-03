@@ -3,9 +3,6 @@
 namespace App\Providers;
 
 use Illuminate\Support\ServiceProvider;
-use App\Post;
-use App\Category;
-use View;
 use Schema;
 
 class AppServiceProvider extends ServiceProvider
@@ -17,11 +14,7 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        if (Schema::hasTable('posts') && Schema::hasTable('categories')) {
-            View::share('categories', Category::getCategories());
-            View::share('popularPosts', Post::getPopularPosts(Post::POPULAR_QUANTITY));
-            View::share('recentlyPosts', Post::getRecentlyPosts(Post::RECENTLY_QUANTITY));
-        }
+        // ...
     }
 
     /**

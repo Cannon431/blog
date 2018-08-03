@@ -54,7 +54,7 @@
                                         <td><img src="{{ asset('assets/images/posts/' . $item->image) }}" alt="{{ $item->title }}" width="230" height="180"></td>
                                         <td><a href="{{ url('admin/categories/' . $item->category->id) }}">{{ $item->category->name }}</a></td>
                                         <td>{{ $item->author->name }}</td>
-                                        <td>{{ $item->comments->count() }}</td>
+                                        <td>{{ $item->comments_count }}</td>
                                         <td>{{ $item->created_at }}</td>
                                         <td>
                                             <a href="{{ url('/admin/posts/' . $item->id) }}" title="View Post"><button class="btn btn-info btn-sm"> Смотреть</button></a>

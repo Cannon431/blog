@@ -22,17 +22,17 @@ class CommentsController extends Controller
         $perPage = 25;
 
         if (!empty($keyword)) {
-            $comments = Comment::where('author', 'LIKE', "%$keyword%")
+            $comments = Comment::with('post')
+                ->where('author', 'LIKE', "%$keyword%")
                 ->orWhere('email', 'LIKE', "%$keyword%")
                 ->orWhere('text', 'LIKE', "%$keyword%")
-                ->latest()->paginate($perPage);
+                ->latest()
+                ->paginate($perPage);
         } else {
-            $comments = Comment::latest()->paginate($perPage);
+            $comments = Comment::with('post')->latest()->paginate($perPage);
         }
 
-        $commentsQuantity = Comment::count();
-
-        return view('admin.comments.index', compact('comments', 'commentsQuantity'));
+        return view('admin.comments.index', compact('comments'));
     }
 
     /**

@@ -21,15 +21,17 @@ class CategoriesController extends Controller
         $perPage = 25;
 
         if (!empty($keyword)) {
-            $categories = Category::where('name', 'LIKE', "%$keyword%")
-                ->latest()->paginate($perPage);
+            $categories = Category::withCount('posts')
+                ->where('name', 'LIKE', "%$keyword%")
+                ->latest()
+                ->paginate($perPage);
         } else {
-            $categories = Category::latest()->paginate($perPage);
+            $categories = Category::withCount('posts')
+                ->latest()
+                ->paginate($perPage);
         }
 
-        $categoriesQuantity = Category::count();
-
-        return view('admin.categories.index', compact('categories', 'categoriesQuantity'));
+        return view('admin.categories.index', compact('categories'));
     }
 
     /**

@@ -29,9 +29,7 @@ class UsersController extends Controller
             $users = User::latest()->paginate($perPage);
         }
 
-        $usersQuantity = User::count();
-
-        return view('admin.users.index', compact('users', 'usersQuantity'));
+        return view('admin.users.index', compact('users'));
     }
 
     /**

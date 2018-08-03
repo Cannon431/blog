@@ -23,18 +23,23 @@ class PostsController extends Controller
         $perPage = 25;
 
         if (!empty($keyword)) {
-            $posts = Post::where('title', 'LIKE', "%$keyword%")
+            $posts = Post::with('category')
+                ->with('author')
+                ->withCount('comments')
+                ->where('title', 'LIKE', "%$keyword%")
                 ->orWhere('description', 'LIKE', "%$keyword%")
                 ->orWhere('text', 'LIKE', "%$keyword%")
                 ->orWhere('image', 'LIKE', "%$keyword%")
                 ->latest()->paginate($perPage);
         } else {
-            $posts = Post::latest()->paginate($perPage);
+            $posts = Post::with('category')
+                ->with('author')
+                ->withCount('comments')
+                ->latest()
+                ->paginate($perPage);
         }
 
-        $postsQuantity = Post::count();
-
-        return view('admin.posts.index', compact('posts', 'postsQuantity'));
+        return view('admin.posts.index', compact('posts'));
     }
 
     /**

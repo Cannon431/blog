@@ -3,7 +3,6 @@
 namespace App\Http\Middleware;
 
 use Closure;
-use Auth as A;
 
 class Auth
 {
@@ -16,7 +15,6 @@ class Auth
      */
     public function handle($request, Closure $next)
     {
-        if (!A::check()) return redirect('/login');
-        return $next($request);
+        //
     }
 }

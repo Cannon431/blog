@@ -11,14 +11,16 @@
 |
 */
 
-Route::get('/', 'PostController@index');
-Route::get('post/{id}', 'PostController@post')
-    ->where('id', '\d+');
-Route::get('category/{id}', 'PostController@category')
-    ->where('id', '\d+');
+Route::group(['middleware' => ['blog']], function () {
+    Route::get('/', 'PostController@index');
+    Route::get('post/{id}', 'PostController@post')
+        ->where('id', '\d+');
+    Route::get('category/{id}', 'PostController@category')
+        ->where('id', '\d+');
 
-Route::get('comment/add/{id}', 'CommentController@add')
-    ->where('id', '\d+');
+    Route::get('comment/add/{id}', 'CommentController@add')
+        ->where('id', '\d+');
+});
 
 Route::group(['middleware' => ['web']], function () {
     Route::get('login', ['as' => 'login', 'uses' => 'Auth\LoginController@showLoginForm']);
@@ -33,7 +35,7 @@ Route::group(['middleware' => ['web']], function () {
 
 Route::get('/home', 'HomeController@index')->name('home');
 
-Route::middleware('auth')->group(function () {
+Route::group(['middleware' => ['admin']], function () {
     Route::get('admin', function () {
         return view('admin.dashboard');
     });

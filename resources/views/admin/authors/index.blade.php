@@ -38,7 +38,7 @@
                                     <tr>
                                         <td>{{ $loop->iteration or $item->id }}</td>
                                         <td>{{ $item->name }}</td>
-                                        <td>{{ $item->posts->count() }}</td>
+                                        <td>{{ $item->posts_count }}</td>
                                         <td>
                                             <a href="{{ url('/admin/authors/' . $item->id) }}" title="View Author"><button class="btn btn-info btn-sm"> Смотреть</button></a>
                                             <a href="{{ url('/admin/authors/' . $item->id . '/edit') }}" title="Edit Author"><button class="btn btn-primary btn-sm"><i class="fa fa-pencil-square-o" aria-hidden="true"></i> Изменить</button></a>

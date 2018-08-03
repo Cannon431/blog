@@ -21,15 +21,16 @@ class AuthorsController extends Controller
         $perPage = 25;
 
         if (!empty($keyword)) {
-            $authors = Author::where('name', 'LIKE', "%$keyword%")
+            $authors = Author::withCount('posts')
+                ->where('name', 'LIKE', "%$keyword%")
                 ->latest()->paginate($perPage);
         } else {
-            $authors = Author::latest()->paginate($perPage);
+            $authors = Author::withCount('posts')
+                ->latest()
+                ->paginate($perPage);
         }
 
-        $authorsQuantity = Author::count();
-
-        return view('admin.authors.index', compact('authors', 'authorsQuantity'));
+        return view('admin.authors.index', compact('authors'));
     }
 
     /**

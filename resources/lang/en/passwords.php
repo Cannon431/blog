@@ -13,9 +13,9 @@ return [
     |
     */
 
-    'password' => 'Passwords must be at least six characters and match the confirmation.',
+    'password' => 'Длина пароля должна быть не меньше 6 символов и совпадать с подтверждением пароля!',
     'reset' => 'Пароль восстановлен.',
     'sent' => 'Мы отправили на ваш E-mail письмо.',
-    'token' => 'This password reset token is invalid.',
+    'token' => 'Неправильный токен!',
     'user' => "Пользователь с таким логином не найден!",
 ];

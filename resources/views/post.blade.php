@@ -72,8 +72,8 @@
                         </div><!--related post carousel-->
                     @endif
                 <div id="comments">
-                <h3>Комментарии ({{ $commentsCount }})</h3>
-                    @if($commentsCount > 0)
+                <h3>Комментарии ({{ $comments->total() }})</h3>
+                    @if($comments->total() > 0)
                         @foreach($comments as $comment)
                             <div class="bottom-comment"><!--bottom comment-->
                                 <div class="comment-img">
@@ -145,7 +145,7 @@
 
                             if (message.value && name.value && email.value) {
                                 fetch(
-                                    `/comment/add/{{ $post->id }}?
+                                    `/comment/add/{{ $postId }}?
                                         name=${name.value}
                                         &email=${email.value}
                                         &message=${message.value}`,

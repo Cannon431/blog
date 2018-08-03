@@ -6,11 +6,20 @@ use Illuminate\Database\Eloquent\Model;
 
 class Post extends Model
 {
+    const IN_HOME_PAGE = 4;
+    const IN_BY_CATEGORIES_PAGE = 10;
+    const POPULAR_QUANTITY = 4;
+    const RECENTLY_QUANTITY = 4;
+    const RECOMMENDED_QUANTITY = 6;
+
     protected $fillable = ['title', 'description', 'image', 'text', 'category_id', 'author_id'];
 
     public static function getPosts($limit)
     {
-        return Post::orderBy('id', 'desc')
+        return Post::with('category')
+            ->withCount('comments')
+            ->with('author')
+            ->orderBy('id', 'desc')
             ->paginate($limit);
     }
     public static function getRecentlyPosts($limit)

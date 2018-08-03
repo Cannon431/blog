@@ -36,7 +36,7 @@
                         <div class="social-share">
                             <span class="social-share-title pull-left text-capitalize">{{ $post->author->name }},  {{ $post->created_at }}</span>
                             <ul class="text-center pull-right">
-                                <li><a class="s-facebook" href="{{ url('post/' . $post->id) }}"><i class="fa fa-comments"></i></a></li>{{ $post->comments->count() }}
+                                <li><a class="s-facebook" href="{{ url('post/' . $post->id) }}"><i class="fa fa-comments"></i></a></li>{{ $post->comments_count }}
                                 <li><a class="s-facebook" href="{{ url('post/' . $post->id) }}"><i class="fa fa-eye"></i></a></li>{{ $post->views }}
                             </ul>
                         </div>

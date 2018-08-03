@@ -13,7 +13,12 @@
                         <br />
                         <br />
 
-                        {!! Form::open(['url' => '/admin/posts', 'class' => 'form-horizontal', 'files' => true]) !!}
+                        {!! Form::open([
+                            'url' => '/admin/posts',
+                            'class' => 'form-horizontal',
+                            'files' => true,
+                            'novalidate' => 'novalidate'
+                        ]) !!}
 
                         @include ('admin.posts.form')
 

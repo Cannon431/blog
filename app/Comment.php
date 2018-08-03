@@ -10,6 +10,11 @@ class Comment extends Model
 
     protected $fillable = ['author', 'email', 'text', 'post_id'];
 
+    public static function get($post, $perPage)
+    {
+        return $post->comments()->paginate($perPage);
+    }
+
     public function getCreatedAtAttribute($value)
     {
         $date = \Carbon\Carbon::parse($value)->format('j %n% Y, в H:i');

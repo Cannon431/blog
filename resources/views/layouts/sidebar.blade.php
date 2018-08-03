@@ -45,7 +45,7 @@
             @foreach($categories as $category)
                 <li>
                     <a href="{{ url('category/' . $category->id) }}">{{ $category->name }}</a>
-                    <span class="post-count pull-right"> ({{ $category->posts()->count() }})</span>
+                    <span class="post-count pull-right"> ({{ $category->posts_count }})</span>
                 </li>
             @endforeach
             </ul>

@@ -19,10 +19,9 @@ class AppServiceProvider extends ServiceProvider
     {
         if (Schema::hasTable('posts') && Schema::hasTable('categories')) {
             View::share('categories', Category::getCategories());
-            View::share('popularPosts', Post::getPopularPosts(4));
-            View::share('recentlyPosts', Post::getRecentlyPosts(4));
+            View::share('popularPosts', Post::getPopularPosts(Post::POPULAR_QUANTITY));
+            View::share('recentlyPosts', Post::getRecentlyPosts(Post::RECENTLY_QUANTITY));
         }
-        
     }
 
     /**

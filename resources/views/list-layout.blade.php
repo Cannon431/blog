@@ -13,7 +13,7 @@
                         @endauth
                     </h2>
                     <br>
-                    @if($posts !== false)
+                    @if(!$posts->isEmpty())
                         @foreach($posts as $post)
                             <article class="post post-list">
                                 <div class="row">

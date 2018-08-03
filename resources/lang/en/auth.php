@@ -14,6 +14,6 @@ return [
     */
 
     'failed' => 'Неправильный логин или пароль!',
-    'throttle' => 'Too many login attempts. Please try again in :seconds seconds.',
+    'throttle' => 'Количество попыток превисло лимит. Пожалуйста, попробуйте еще раз через :seconds секунд.',
 
 ];

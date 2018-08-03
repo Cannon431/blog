@@ -8,9 +8,14 @@ class Category extends Model
 {
     protected $fillable = ['name'];
 
+    public static function getCategory($id)
+    {
+        return Category::where('id', '=', $id)->first();
+    }
+
     public static function getCategories()
     {
-        return Category::all();
+        return Category::withCount('posts')->get();
     }
 
     public static function getToSelect()

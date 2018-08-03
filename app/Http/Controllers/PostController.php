@@ -10,46 +10,39 @@ class PostController extends Controller
 {
     public function index()
     {
-        $posts = Post::getPosts(4);
-
         return view('index', [
-            'posts' => $posts
+            'posts' => Post::getPosts(POST::IN_HOME_PAGE)
         ]);
     }
 
     public function post($id)
     {
         $post = Post::getPost($id);
-        $comments = $post->comments()->paginate(Comment::PER_PAGE);
-        $commentsCount = Comment::where('post_id', '=', $id)->count();
+        $comments = Comment::get($post, Comment::PER_PAGE);
 
-        if (!$post) {
-            abort(404);
-        }
+        if (!$post) abort(404);
 
         Post::increaseViews($post);
-        $recommendedPosts = Post::getRecommendedPosts($post->category->id, $post->id, 6);
+        $recommendedPosts = Post::getRecommendedPosts(
+            $post->category->id,
+            $post->id,
+            Post::RECOMMENDED_QUANTITY
+        );
 
         return view('post', [
             'post' => $post,
+            'postId' => $id,
             'recommendedPosts' => $recommendedPosts,
-            'comments' => $comments,
-            'commentsCount' => $commentsCount
+            'comments' => $comments
         ]);
     }
 
     public function category($id)
     {
-        $posts = Post::getPostsByCategory(10, $id);
-        $category = Category::where('id', '=', $id)->first();
+        $posts = Post::getPostsByCategory(Post::IN_BY_CATEGORIES_PAGE, $id);
+        $category = Category::getCategory($id);
 
-        if (empty($category)) {
-            abort(404);
-        }
-
-        if ($posts->isEmpty()) {
-            $posts = false;
-        }
+        if (empty($category)) abort(404);
 
         return view('list-layout', [
             'posts' => $posts,

@@ -38,7 +38,8 @@ class Post extends Model
 
     public static function getPostsByCategory($limit, $categoryId)
     {
-        return Post::orderBy('id', 'desc')
+        return Post::with('author')
+            ->orderBy('id', 'desc')
             ->where('category_id', '=', $categoryId)
             ->paginate($limit);
     }

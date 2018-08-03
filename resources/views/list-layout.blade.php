@@ -33,7 +33,7 @@
                                         <div class="post-content">
                                             <header class="entry-header text-uppercase">
                                                 <h6>
-                                                    <a href="{{ url('category/' . $post->category->id ) }}"> {{ $post->category->name }}</a>
+                                                    <a href="{{ url('category/' . $category->id ) }}"> {{ $category->name }}</a>
                                                 </h6>
                                                 <h1 class="entry-title"><a
                                                             href="{{ url('post/' . $post->id) }}">{{ $post->title }}</a>

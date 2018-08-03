@@ -37,7 +37,7 @@
                                 @foreach($categories as $item)
                                     <tr>
                                         <td>{{ $loop->iteration or $item->id }}</td>
-                                        <td>{{ $item->name }}</td>
+                                        <td><a href="{{ url('category/' . $item->id) }}">{{ $item->name }}</a></td>
                                         <td>{{ $item->posts_count }}</td>
                                         <td>
                                             <a href="{{ url('/admin/categories/' . $item->id) }}" title="View Category"><button class="btn btn-info btn-sm"> Смотреть</button></a>

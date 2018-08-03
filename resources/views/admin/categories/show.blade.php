@@ -33,7 +33,7 @@
                                     <tr>
                                         <th>ID</th><td>{{ $category->id }}</td>
                                     </tr>
-                                    <tr><th> Название </th><td> {{ $category->name }} </td></tr>
+                                    <tr><th> Название </th><td><a href="{{ url('category/' . $category->id) }}"> {{ $category->name }}</a></td></tr>
                                     <tr><th> Кол-во постов </th><td> {{ $category->posts->count() }} </td></tr>
                                 </tbody>
                             </table>

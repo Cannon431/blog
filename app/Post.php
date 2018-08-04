@@ -3,6 +3,7 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use Carbon\Carbon;
 
 class Post extends Model
 {
@@ -46,8 +47,10 @@ class Post extends Model
 
     public static function getPost($id)
     {
-        return Post::where('id', '=', $id)
-            ->with('comments')
+        return Post::with('comments')
+            ->with('category')
+            ->with('author')
+            ->where('id', $id)
             ->firstOrFail();
     }
 
@@ -79,7 +82,9 @@ class Post extends Model
 
     public function getCreatedAtAttribute($value)
     {
-        $date = \Carbon\Carbon::parse($value)->format('j %n% Y, в H:i');
+        $date = Carbon::parse($value)
+            ->addHours(session()->get('timezone'))
+            ->format("j %n% Y, в H:i");
 
         return preg_replace_callback('/%([0-9]{1,2})%/', function ($matches) {
             $months = [
@@ -88,7 +93,7 @@ class Post extends Model
                 'Августа', 'Сенятбря', 'Октября', 'Ноября'
             ];
 
-            return $months[$matches[1] - 1];
+            return $months[$matches[1]];
         }, $date);
     }
 

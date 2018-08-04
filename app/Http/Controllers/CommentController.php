@@ -32,6 +32,6 @@ class CommentController extends Controller
         $comment->post_id = $request->id;
         $comment->save();
 
-        return response()->json(['ok' => true]);
+        return response()->json(['ok' => true], 200);
     }
 }

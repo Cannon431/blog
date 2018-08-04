@@ -10,7 +10,7 @@ class Category extends Model
 
     public static function getCategory($id)
     {
-        return Category::where('id', '=', $id)->first();
+        return Category::findOrFail($id);
     }
 
     public static function getCategories()

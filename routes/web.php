@@ -20,6 +20,8 @@ Route::group(['middleware' => ['blog']], function () {
 
     Route::get('comment/add/{id}', 'CommentController@add')
         ->where('id', '\d+');
+
+    Route::get('timezone/set', 'TimezoneController@set');
 });
 
 Route::group(['middleware' => ['web']], function () {

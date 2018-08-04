@@ -18,7 +18,8 @@ class CreateCommentsTable extends Migration
             $table->string('author');
             $table->string('email');
             $table->text('text');
-            $table->timestamps();
+            $table->timestamp('created_at')->default(\Carbon\Carbon::now()->toDateTimeString());
+            $table->timestamp('updated_at')->default(\Carbon\Carbon::now()->toDateTimeString());
         });
     }
 

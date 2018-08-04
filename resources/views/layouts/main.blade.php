@@ -10,7 +10,17 @@
     <link rel="shortcut icon" href="assets/images/index.html">
 
     <title>@yield('title')</title>
-
+@if(!session()->has('timezone'))
+    <script>
+        (() => {
+            let date = new Date(),
+                timezone = -date.getTimezoneOffset() / 60;
+            fetch('/timezone/set?timezone=' + timezone)
+                .then(response => console.log(response))
+                .catch(error => console.log(error));
+        })();
+    </script>
+@endif
     <!-- common css -->
     <link rel="stylesheet" href="{{ asset('assets/css/bootstrap.min.css') }}">
     <link rel="stylesheet" href="{{ asset('assets/css/font-awesome.min.css') }}">
@@ -23,8 +33,10 @@
 
     <!-- HTML5 shim and Respond.js IE9 support of HTML5 elements and media queries -->
     <!--[if lt IE 9]>
+
     <script src="{{ asset('assets/js/html5shiv.js') }}"></script>
     <script src="{{ asset('assets/js/respond.js') }}"></script>
+
     <![endif]-->
 
     <!-- Favicon -->

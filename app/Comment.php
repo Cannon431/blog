@@ -3,6 +3,7 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use Carbon\Carbon;
 
 class Comment extends Model
 {
@@ -17,7 +18,9 @@ class Comment extends Model
 
     public function getCreatedAtAttribute($value)
     {
-        $date = \Carbon\Carbon::parse($value)->format('j %n% Y, в H:i');
+        $date = Carbon::parse($value)
+            ->addHours(session()->get('timezone'))
+            ->format("j %n% Y, в H:i");
 
         return preg_replace_callback('/%([0-9]{1,2})%/', function ($matches) {
             $months = [
@@ -26,7 +29,7 @@ class Comment extends Model
                 'Августа', 'Сенятбря', 'Октября', 'Ноября'
             ];
 
-            return $months[$matches[1] - 1];
+            return $months[$matches[1]];
         }, $date);
     }
 

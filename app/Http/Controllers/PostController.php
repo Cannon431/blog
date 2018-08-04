@@ -20,8 +20,6 @@ class PostController extends Controller
         $post = Post::getPost($id);
         $comments = Comment::get($post, Comment::PER_PAGE);
 
-        if (!$post) abort(404);
-
         Post::increaseViews($post);
         $recommendedPosts = Post::getRecommendedPosts(
             $post->category->id,
@@ -41,8 +39,6 @@ class PostController extends Controller
     {
         $posts = Post::getPostsByCategory(Post::IN_BY_CATEGORIES_PAGE, $id);
         $category = Category::getCategory($id);
-
-        if (empty($category)) abort(404);
 
         return view('list-layout', [
             'posts' => $posts,

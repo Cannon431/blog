@@ -172,6 +172,10 @@
                                                 hours = date.getHours(),
                                                 minutes = date.getMinutes().toString().length === 1 ? '0' + date.getMinutes() : date.getMinutes();
 
+                                            if (hours == 0) {
+                                                hours = '00';
+                                            }
+
                                             let gravatarHash = md5(email.value.trim().toLowerCase());
 
                                             let newComment = document.createElement('div');

@@ -22,7 +22,8 @@ class CreatePostsTable extends Migration
             $table->text('text');
             $table->integer('views')->default(0);
             $table->string('image');
-            $table->timestamps();
+            $table->timestamp('created_at')->default(\DB::raw('CURRENT_TIMESTAMP'));
+            $table->timestamp('updated_at')->default(\DB::raw('CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP'));
         });
     }
 
